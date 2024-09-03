@@ -48,34 +48,19 @@
 
         .scroll-indicator {
             margin-top: 40px;
-            animation: bounce 2s infinite;
             cursor: pointer;
         }
 
-        @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
         .section2 {
-            opacity: 0;
-            transform: translateY(50%);
-            transition: transform 0.3s ease, opacity 0.3s ease; /* Faster transition */
-        }
-
-        .section2.visible {
             opacity: 1;
             transform: translateY(0);
+            transition: none; /* No transitions for section2 */
         }
 
         .section2 h2 {
             font-size: 3rem;
             margin-bottom: 1rem;
-            color: #3c096c;
+            color: #480c80;
             text-align: center;
         }
 
@@ -85,6 +70,15 @@
             color: #aaa;
             max-width: 800px;
             text-align: center;
+        }
+
+        .section2 a {
+            color: #480c80; /* Purple color for the link */
+            text-decoration: none;
+        }
+
+        .section2 a:hover {
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
@@ -141,7 +135,7 @@
     <!-- Section 2 -->
     <div class="section2" id="section2">
         <h2 id="section2Text">I'm Learning Web Development!</h2>
-        <p>I'm learning web development with The Odin Project, working to create amazing web experiences. Join me as I grow my skills and build something great.</p>
+        <p>I’m learning web development with <a href="https://www.theodinproject.com" target="_blank">The Odin Project</a>, working to create great web experiences. Follow along as I grow my skills and build something awesome.</p>
     </div>
 
     <script>
@@ -149,20 +143,6 @@
         function scrollToSection2() {
             document.getElementById('section2').scrollIntoView({ behavior: 'smooth' });
         }
-
-        // Intersection Observer to add class when section 2 is visible
-        document.addEventListener('DOMContentLoaded', () => {
-            const section2 = document.getElementById('section2');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        section2.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            observer.observe(section2);
-        });
     </script>
 </body>
 </html>
