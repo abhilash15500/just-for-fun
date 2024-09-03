@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Xplozion</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #000; /* Solid black background */
+            color: #fff;
+            overflow-x: hidden;
+            scroll-behavior: smooth; /* Smooth scrolling */
+        }
+
+        .section, .section2 {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 0 20px;
+            background-color: #000; /* Solid black background for both sections */
+        }
+
+        .section h1 {
+            font-size: 4rem;
+            margin: 0;
+            color: #fff;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .section h1 span {
+            color: #3c096c;
+        }
+
+        .section img {
+            width: 40vw;
+            max-width: 200px;
+            height: auto;
+            border-radius: 50%;
+            margin-top: 30px;
+        }
+
+        .scroll-indicator {
+            margin-top: 40px;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .section2 {
+            opacity: 0;
+            transform: translateY(50%);
+            transition: transform 0.3s ease, opacity 0.3s ease; /* Faster transition */
+        }
+
+        .section2.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section2 h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #3c096c;
+            text-align: center;
+        }
+
+        .section2 p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #aaa;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .section h1 {
+                font-size: 3.5rem;
+            }
+
+            .section img {
+                width: 35vw;
+            }
+
+            .section2 h2 {
+                font-size: 2.5rem;
+            }
+
+            .section2 p {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section h1 {
+                font-size: 3rem;
+            }
+
+            .section img {
+                width: 30vw;
+            }
+
+            .section2 h2 {
+                font-size: 2rem;
+            }
+
+            .section2 p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Section 1 -->
+    <div class="section">
+        <h1>Hey, I'm <span>Xplozion</span></h1>
+        <!-- Cat Image -->
+        <img src="./cat.jpg" alt="Xplozion Cat" class="responsive-img">
+        <div class="scroll-indicator" onclick="scrollToSection2()">
+            <!-- Arrow SVG -->
+            <svg width="30px" height="30px" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 17C11.825 17 11.65 16.94 11.515 16.805L5.51499 10.805C5.22499 10.515 5.22499 10.035 5.51499 9.74498C5.80499 9.45498 6.28499 9.45498 6.57499 9.74498L12 15.17L17.425 9.74498C17.715 9.45498 18.195 9.45498 18.485 9.74498C18.775 10.035 18.775 10.515 18.485 10.805L12.485 16.805C12.35 16.94 12.175 17 12 17Z"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section2" id="section2">
+        <h2 id="section2Text">I'm Learning Web Development!</h2>
+        <p>I'm learning web development with The Odin Project, working to create amazing web experiences. Join me as I grow my skills and build something great.</p>
+    </div>
+
+    <script>
+        // Scroll to Section 2
+        function scrollToSection2() {
+            document.getElementById('section2').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Intersection Observer to add class when section 2 is visible
+        document.addEventListener('DOMContentLoaded', () => {
+            const section2 = document.getElementById('section2');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        section2.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            observer.observe(section2);
+        });
+    </script>
+</body>
+</html>
