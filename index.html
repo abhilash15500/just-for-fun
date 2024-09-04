@@ -9,10 +9,11 @@
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #000; /* Solid black background */
+            background-color: #000;
             color: #fff;
             overflow-x: hidden;
-            scroll-behavior: smooth; /* Smooth scrolling */
+            scroll-behavior: smooth;
+            height: 100%;
         }
 
         .section, .section2 {
@@ -23,7 +24,8 @@
             flex-direction: column;
             text-align: center;
             padding: 0 20px;
-            background-color: #000; /* Solid black background for both sections */
+            background-color: #000;
+            position: relative;
         }
 
         .section h1 {
@@ -35,7 +37,7 @@
         }
 
         .section h1 span {
-            color: #3c096c;
+            color: skyblue;
         }
 
         .section img {
@@ -47,47 +49,34 @@
         }
 
         .scroll-indicator {
-            margin-top: 40px;
+            position: absolute;
+            bottom: 20px;
             cursor: pointer;
         }
 
-        .section2 {
-            opacity: 1;
-            transform: translateY(0);
-            transition: none; /* No transitions for section2 */
-        }
-
-        .section2 h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: #480c80;
-            text-align: center;
-        }
-
-        .section2 p {
-            font-size: 1.5rem;
-            line-height: 1.6;
-            color: #aaa;
-            max-width: 800px;
-            text-align: center;
-        }
-
-        .section2 a {
-            color: #480c80; /* Purple color for the link */
-            text-decoration: none;
-        }
-
-        .section2 a:hover {
-            text-decoration: underline;
+        .scroll-indicator svg {
+            width: 50px;
+            height: 50px;
+            fill: white;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease;
         }
 
         @media (max-width: 768px) {
+            .scroll-indicator svg {
+                transform: translateY(-10px);
+            }
+
             .section h1 {
                 font-size: 3.5rem;
             }
 
             .section img {
                 width: 35vw;
+            }
+
+            .gif-container img {
+                max-width: 40vw; /* Adjust size for smaller screens */
             }
 
             .section2 h2 {
@@ -100,12 +89,22 @@
         }
 
         @media (max-width: 480px) {
+            .scroll-indicator svg {
+                transform: translateY(-20px);
+                width: 40px;
+                height: 40px;
+            }
+
             .section h1 {
                 font-size: 3rem;
             }
 
             .section img {
                 width: 30vw;
+            }
+
+            .gif-container img {
+                max-width: 30vw; /* Further adjust size for very small screens */
             }
 
             .section2 h2 {
@@ -115,6 +114,37 @@
             .section2 p {
                 font-size: 1rem;
             }
+        }
+
+        .section2 h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: skyblue;
+            text-align: center;
+        }
+
+        .section2 p {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            color: #aaa;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .section2 a {
+            color: skyblue;
+            text-decoration: none;
+        }
+
+        .section2 a:hover {
+            text-decoration: underline;
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: auto;
+            max-width: 50vw; /* Set the maximum width relative to viewport width */
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -126,7 +156,7 @@
         <img src="./cat.jpg" alt="Xplozion Cat" class="responsive-img">
         <div class="scroll-indicator" onclick="scrollToSection2()">
             <!-- Arrow SVG -->
-            <svg width="30px" height="30px" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 17C11.825 17 11.65 16.94 11.515 16.805L5.51499 10.805C5.22499 10.515 5.22499 10.035 5.51499 9.74498C5.80499 9.45498 6.28499 9.45498 6.57499 9.74498L12 15.17L17.425 9.74498C17.715 9.45498 18.195 9.45498 18.485 9.74498C18.775 10.035 18.775 10.515 18.485 10.805L12.485 16.805C12.35 16.94 12.175 17 12 17Z"/>
             </svg>
         </div>
@@ -136,10 +166,14 @@
     <div class="section2" id="section2">
         <h2 id="section2Text">I'm Learning Web Development!</h2>
         <p>I’m learning web development with <a href="https://www.theodinproject.com" target="_blank">The Odin Project</a>, working to create great web experiences. Follow along as I grow my skills and build something awesome.</p>
+        
+        <!-- GIF Embed -->
+        <div class="gif-container">
+            <img src="./catgif.gif" alt="Cat Vibe GIF">
+        </div>
     </div>
 
     <script>
-        // Scroll to Section 2
         function scrollToSection2() {
             document.getElementById('section2').scrollIntoView({ behavior: 'smooth' });
         }
